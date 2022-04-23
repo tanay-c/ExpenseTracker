@@ -1,10 +1,21 @@
-const userDataObj = {
-  UserID: "",
-  CurrentBalance: "",
-  Budget: "",
-  Transactions: [],
+const TransactionData = {
+  name: "",
+  date: "",
+  amount: "",
+  currency: "$",
+  category: "",
 };
 const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+
+function loadHome() {
+  let user_greeting = document.createElement("h1");
+  user_greeting.innerHTML = "Hello user!";
+  let root = document.getElementById("root");
+  root.classList.add("d-flex");
+  root.classList.add("align-items-center");
+  root.classList.add("justify-content-center");
+  root.appendChild(user_greeting);
+}
 
 function getPriorEntries() {
   fetch("./userData.JSON")
@@ -34,17 +45,22 @@ function fillTrContent() {
     let userLogs = JSON.parse(userStorage.getItem("JSON"))[0];
     const username = userLogs["UserID"];
     const currentbalance = userLogs["CurrentBalance"];
-    const budget = userLogs["Budget"];    
+    const budget = userLogs["Budget"];
     document.getElementById("tr_budget").innerHTML = "Budget: ".concat(budget);
-    document.getElementById("tr_remaining").innerHTML = "Remaining: ".concat(currentbalance);
+    document.getElementById("tr_remaining").innerHTML = "Remaining: ".concat(
+      currentbalance
+    );
 
     let transactions = userLogs["Transactions"];
-    total = transactions.reduce((partialsum, a) => partialsum + Number(a["amount"]), 0);
+    total = transactions.reduce(
+      (partialsum, a) => partialsum + Number(a["amount"]),
+      0
+    );
     document.getElementById("tr_total").innerHTML = "Total: ".concat(total);
     let tr_list = document.getElementById("tr_list");
     ul = document.createElement("ul");
     ul.classList.add("list-group");
-    tr_list.appendChild(ul);    
+    tr_list.appendChild(ul);
     for (tr of transactions) {
       let li = document.createElement("li");
       li.classList.add("list-group-item");
@@ -72,17 +88,22 @@ function formatDate(date) {
   return date.toLocaleDateString("en-US", dateOptions);
 }
 
-function loadHome() {
-  let user_greeting = document.createElement("h1");
-  user_greeting.innerHTML = "Hello user!";
-  let root = document.getElementById("root");
-  root.classList.add("d-flex");
-  root.classList.add("align-items-center");
-  root.classList.add("justify-content-center");
-  root.appendChild(user_greeting);
-}
-
 function loadTransactions() {
   getPriorEntries();
+  fillTrContent();
+}
+
+function addTransaction() {
+  const newEntry = Object.create(userData);
+  let userStorage = window.sessionStorage;
+  let userLogs = JSON.parse(userStorage.getItem("JSON"))[0];
+  Transactions = userLogs["Transactions"];
+  newEntry.date = formatDate(new Date());
+  newEntry.name = document.getElementById("name").value;
+  newEntry.category = document.getElementById("category").value;
+  newEntry.amount = document.getElementById("amount").value;
+
+  userLogs.unshift(newEntry);
+  userStorage.setItem("JSON", JSON.stringify(userLogs));
   fillTrContent();
 }
