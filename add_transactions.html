@@ -13,7 +13,7 @@
     <title>Finance Tracker</title>
 </head>
 
-<body onload=loadTransactions()>
+<body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="./index.html">Finance Tracker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Transactions</a>
+                    <a class="nav-link" href="./transactions.html">Transactions</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./alerts.html">Alerts</a>
@@ -38,27 +38,27 @@
 
     <div class="container">
         <form class="form-group" action="javascript:addTransaction()">
-            <div className="row">
-                <div className="col-sm">
+            <div class="row">
+                <div class="col-sm">
                     <label for="name">Name</label>
-                    <input required="required" type="text" className="form-control" placeholder="Transaction Name"
+                    <input required="required" type="text" class="form-control" placeholder="Transaction Name"
                         id="name"></input>
                 </div>
-                <div className="col-sm">
+                <div class="col-sm">
                     <label for="category">Category</label>
-                    <input required="required" type="text" className="form-control" id="category"></input>
+                    <input required="required" type="text" class="form-control" id="category"></input>
                 </div>
             </div>
-            <div className="row">
-                <div className="col-sm">
+            <div class="row">
+                <div class="col-sm">
                     <label for="amount">Amount</label>
-                    <input required="required" type="text" className="form-control"
+                    <input required="required" type="text" class="form-control"
                         placeholder="Enter transaction amount" value=0 id="amount"></input>
                 </div>
             </div>
-            <div className="row">
-                <div className="col-sm">
-                    <button type="submit" className="btn btn-primary mt-3">
+            <div class="row">
+                <div class=`"col-sm">                  
+                    <button type="submit" class="btn btn-primary mt-3" >
                         Save
                     </button>
                 </div>

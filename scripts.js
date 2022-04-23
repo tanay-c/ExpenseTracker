@@ -46,15 +46,14 @@ function fillTrContent() {
     const username = userLogs["UserID"];
     const currentbalance = userLogs["CurrentBalance"];
     const budget = userLogs["Budget"];
-    document.getElementById("tr_budget").innerHTML = "Budget: ".concat(budget);
-    document.getElementById("tr_remaining").innerHTML = "Remaining: ".concat(
-      currentbalance
-    );
-
+    document.getElementById("tr_budget").innerHTML = "Budget: ".concat(currentbalance);  
     let transactions = userLogs["Transactions"];
     total = transactions.reduce(
       (partialsum, a) => partialsum + Number(a["amount"]),
       0
+    );
+    document.getElementById("tr_remaining").innerHTML = "Remaining: ".concat(
+      Number(currentbalance) - total
     );
     document.getElementById("tr_total").innerHTML = "Total: ".concat(total);
     let tr_list = document.getElementById("tr_list");
@@ -94,16 +93,16 @@ function loadTransactions() {
 }
 
 function addTransaction() {
-  const newEntry = Object.create(userData);
+  const newEntry = Object.create(TransactionData);
   let userStorage = window.sessionStorage;
-  let userLogs = JSON.parse(userStorage.getItem("JSON"))[0];
-  Transactions = userLogs["Transactions"];
+  let userLogs = JSON.parse(userStorage.getItem("JSON"))
+  let Transactions = userLogs[0]["Transactions"];
   newEntry.date = formatDate(new Date());
   newEntry.name = document.getElementById("name").value;
   newEntry.category = document.getElementById("category").value;
   newEntry.amount = document.getElementById("amount").value;
 
-  userLogs.unshift(newEntry);
+  Transactions.unshift(newEntry);
   userStorage.setItem("JSON", JSON.stringify(userLogs));
-  fillTrContent();
+  window.location.href="./transactions.html"
 }

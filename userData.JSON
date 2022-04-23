@@ -1,8 +1,7 @@
 [
     {
         "UserID": "HCI User",
-        "CurrentBalance": "50000",
-        "Budget": "1000",
+        "CurrentBalance": "50000",        
         "Transactions": [
             {
                 "name": "Chicago Flight",
