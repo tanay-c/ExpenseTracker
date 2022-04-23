@@ -104,5 +104,47 @@ function addTransaction() {
 
   Transactions.unshift(newEntry);
   userStorage.setItem("JSON", JSON.stringify(userLogs));
-  window.location.href="./transactions.html"
+  window.location.href="./tr_success.html"
+}
+
+function loadReports(){
+  getPriorEntries();
+  let userStorage = window.sessionStorage;
+  if (userStorage.hasOwnProperty("JSON")) {
+    let userLogs = JSON.parse(userStorage.getItem("JSON"))[0];
+    const username = userLogs["UserID"]; 
+    let transactions = userLogs["Transactions"];
+    var barColors = [
+    "#b91d47",
+    "#00aba9",
+    "#2b5797",
+    "#e8c3b9",
+    "#1e7145"
+    ];
+    var tmp_arr = {"travel":0, "restaurant":0, "shopping":0, "grocery":0, "utilites":0}
+    for (tr of transactions){
+      tmp_arr[tr.category] = tmp_arr[tr.category] + Number(tr.amount)
+    }    
+    var xValues = Object.keys(tmp_arr);
+    var yValues = Object.values(tmp_arr);
+    console.log(xValues)
+    console.log(yValues)
+  
+    new Chart("myChart", {
+      type: "doughnut",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Expense Report"
+        }
+      }
+    })
+  }
 }

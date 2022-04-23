@@ -8,28 +8,28 @@
                 "date": "April 10, 2022",
                 "amount": "400",
                 "currency": "$",
-                "category": "Travel"
+                "category": "travel"
             },
             {
                 "name": "Walmart",
                 "date": "April 02, 2022",
                 "amount": "100",
                 "currency": "$",
-                "category": "Grocery"
+                "category": "grocery"
             },
             {
                 "name": "Basta",
                 "date": "March 22, 2022",
                 "amount": "80",
                 "currency": "$",
-                "category": "Restaurant"
+                "category": "restaurant"
             },
             {
                 "name": "Iowa merch",
                 "date": "March 10, 2022",
                 "amount": "50",
                 "currency": "$",
-                "category": "Shopping"
+                "category": "shopping"
             }
         ]
     }

@@ -45,8 +45,17 @@
                         id="name"></input>
                 </div>
                 <div class="col-sm">
-                    <label for="category">Category</label>
-                    <input required="required" type="text" class="form-control" id="category"></input>
+                  <label for="category">Category</label>
+                  <div>
+                  <select class="form-select" id="category" aria-label="Default select example">
+                    <option value="" disabled selected>Select Category</option>
+                    <option value="travel">travel</option>
+                    <option value="restaurant">restaurant</option>
+                    <option value="shopping">shopping</option>
+                    <option value="grocery">grocery</option>
+                    <option value="utilities">utilities</option>
+                  </select>
+                  </div>
                 </div>
             </div>
             <div class="row">
